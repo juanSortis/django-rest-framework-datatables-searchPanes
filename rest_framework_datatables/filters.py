@@ -19,6 +19,7 @@ def is_valid_regex(regex):
 
 def f_search_q(f, search_value, search_regex=False):
     """helper function that returns a Q-object for a search value"""
+    print("fu")
     qs = []
     if search_value and search_value != 'false':
         if search_regex:
