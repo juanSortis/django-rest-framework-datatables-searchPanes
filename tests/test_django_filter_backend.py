@@ -31,6 +31,7 @@ class CustomDatatablesFilterBackend(DatatablesFilterBackend):
     """
 
     def get_queryset_count_before(self, queryset):
+        print ("zzz")
         return 999
 
     def get_queryset_count_after(self, queryset):
