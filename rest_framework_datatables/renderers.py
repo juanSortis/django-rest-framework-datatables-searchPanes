@@ -8,7 +8,6 @@ class DatatablesRenderer(JSONRenderer):
     format = 'datatables'
 
     def render(self, data, accepted_media_type=None, renderer_context=None):
-        return
         """
         Render `data` into JSON, returning a bytestring.
         """
@@ -71,10 +70,11 @@ class DatatablesRenderer(JSONRenderer):
         )
 
     def _filter_unused_fields(self, request, result, force_serialize):
-        return
         # list of params to keep, triggered by ?keep= and can be comma
         # separated.
         keep = request.query_params.get('keep', [])
+        print(keep)
+        print(request.query_params)
         cols = []
         i = 0
         while True:
@@ -100,7 +100,6 @@ class DatatablesRenderer(JSONRenderer):
                         result['data'][i].pop(k)
 
     def _filter_extra_json(self, view, result, extra_json_funcs):
-        return
         read_only_keys = result.keys()  # don't alter anything
         for func in extra_json_funcs:
             if not hasattr(view, func):
