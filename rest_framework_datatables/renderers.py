@@ -65,6 +65,9 @@ class DatatablesRenderer(JSONRenderer):
 
         self._filter_extra_json(view, new_data, extra_json_funcs)
 
+        if "searchPanes" in data:
+            print("xxxx")
+
         return super(DatatablesRenderer, self).render(
             new_data, accepted_media_type, renderer_context
         )
@@ -73,8 +76,10 @@ class DatatablesRenderer(JSONRenderer):
         # list of params to keep, triggered by ?keep= and can be comma
         # separated.
         keep = request.query_params.get('keep', [])
+        print("----------------------------------")
         print(keep)
         print(request.query_params)
+        print("----------------------------------")
         cols = []
         i = 0
         while True:
