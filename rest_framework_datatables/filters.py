@@ -168,6 +168,7 @@ class DatatablesFilterBackend(DatatablesBaseFilterBackend):
 
         """
         if not self.check_renderer_format(request):
+            return []
             return queryset
 
         total_count = view.get_queryset().count()
@@ -193,6 +194,7 @@ class DatatablesFilterBackend(DatatablesBaseFilterBackend):
         if ordering:
             queryset = queryset.order_by(*ordering)
 
+        return []
         return queryset
 
     def get_q(self, datatables_query):
