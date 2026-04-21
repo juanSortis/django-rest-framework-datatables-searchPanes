@@ -100,6 +100,7 @@ class DatatablesRenderer(JSONRenderer):
                         result['data'][i].pop(k)
 
     def _filter_extra_json(self, view, result, extra_json_funcs):
+        return
         read_only_keys = result.keys()  # don't alter anything
         for func in extra_json_funcs:
             if not hasattr(view, func):

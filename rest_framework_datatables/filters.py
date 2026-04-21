@@ -9,6 +9,7 @@ from .utils import get_param
 
 
 def is_valid_regex(regex):
+    return
     """helper function that checks regex for validity"""
     try:
         re.compile(regex)
@@ -18,6 +19,7 @@ def is_valid_regex(regex):
 
 
 def f_search_q(f, search_value, search_regex=False):
+    return
     """helper function that returns a Q-object for a search value"""
     qs = []
     if search_value and search_value != 'false':
@@ -35,9 +37,11 @@ class DatatablesBaseFilterBackend(BaseFilterBackend):
     """Base class for definining your own DatatablesFilterBackend classes"""
 
     def check_renderer_format(self, request):
+        return
         return request.accepted_renderer.format == 'datatables'
 
     def parse_datatables_query(self, request, view):
+        return
         """parse request.query_params into a list of fields and orderings and
         global search parameters (value and regex)"""
         ret = {}
@@ -47,6 +51,7 @@ class DatatablesBaseFilterBackend(BaseFilterBackend):
         return ret
 
     def get_fields(self, request):
+        return
         """called by parse_query_params to get the list of fields"""
         fields = []
         i = 0
@@ -91,6 +96,7 @@ class DatatablesBaseFilterBackend(BaseFilterBackend):
         return fields
 
     def get_ordering_fields(self, request, view, fields):
+        return
         """called by parse_query_params to get the ordering
 
         return value must be a list of tuples.
@@ -121,11 +127,13 @@ class DatatablesBaseFilterBackend(BaseFilterBackend):
         return ret
 
     def set_count_before(self, view, total_count):
+        return
         # set the queryset count as an attribute of the view for later
         # TODO: find a better way than this hack
         setattr(view, '_datatables_total_count', total_count)
 
     def set_count_after(self, view, filtered_count):
+        return
         """called by filter_queryset to store the ordering after the filter
         operations
 
@@ -135,6 +143,7 @@ class DatatablesBaseFilterBackend(BaseFilterBackend):
         setattr(view, '_datatables_filtered_count', filtered_count)
 
     def append_additional_ordering(self, ordering, view):
+        return
         if len(ordering):
             if hasattr(view, 'datatables_additional_order_by'):
                 additional = view.datatables_additional_order_by
@@ -152,6 +161,7 @@ class DatatablesFilterBackend(DatatablesBaseFilterBackend):
     """
 
     def filter_queryset(self, request, queryset, view):
+        return
         """filter the queryset
 
         subclasses overriding this method should make sure to do all
@@ -196,6 +206,7 @@ class DatatablesFilterBackend(DatatablesBaseFilterBackend):
         return queryset
 
     def get_q(self, datatables_query):
+        return
         q = Q()
         initial_q = Q()
         for f in datatables_query['fields']:
@@ -211,6 +222,7 @@ class DatatablesFilterBackend(DatatablesBaseFilterBackend):
         return q
 
     def get_ordering(self, request, view, fields):
+        return
         """called by parse_query_params to get the ordering
 
         return value must be a valid list of arguments for order_by on
