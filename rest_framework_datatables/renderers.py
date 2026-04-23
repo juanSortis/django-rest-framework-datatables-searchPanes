@@ -21,13 +21,13 @@ class DatatablesRenderer(JSONRenderer):
 
 
         filteringActive = bool(get_param(request, 'searchPanes', '0'))
+        viewCount = False
+        viewTotal = False
+        cascade = False
         if filteringActive:
-            if "searchPanes_options" in request:
-                bool(get_param(request, 'searchPanes_options[viewCount]', '1'))
-            if "searchPanes_options" in request:
-                bool(get_param(request, 'searchPanes_options[viewTotal]', '0'))
-            if "searchPanes_options" in request:
-                bool(get_param(request, 'searchPanes_options[cascade]', '0'))
+            viewCount = bool(get_param(request, 'searchPanes_options[viewCount]', '1'))
+            viewTotal = bool(get_param(request, 'searchPanes_options[viewTotal]', '0'))
+            cascade = bool(get_param(request, 'searchPanes_options[cascade]', '0'))
 
 
 
