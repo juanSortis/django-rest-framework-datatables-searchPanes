@@ -19,6 +19,18 @@ class DatatablesRenderer(JSONRenderer):
 
         view = renderer_context.get('view')
 
+
+        filteringActive = bool(get_param(request, 'searchPanes', '0'))
+        if filteringActive:
+            if "searchPanes_options" in request:
+                bool(get_param(request, 'searchPanes_options[viewCount]', '1'))
+            if "searchPanes_options" in request:
+                bool(get_param(request, 'searchPanes_options[viewTotal]', '0'))
+            if "searchPanes_options" in request:
+                bool(get_param(request, 'searchPanes_options[cascade]', '0'))
+
+
+
         if 'recordsTotal' not in data:
             # pagination was not used, let's fix the data dict
             if 'results' in data:
@@ -76,10 +88,13 @@ class DatatablesRenderer(JSONRenderer):
         # list of params to keep, triggered by ?keep= and can be comma
         # separated.
         keep = request.query_params.get('keep', [])
-        print("----------------------------------")
-        print(keep)
+        print("1----------------------------------")
+        print(request)
+        print("2----------------------------------")
         print(request.query_params)
-        print("----------------------------------")
+        print("3----------------------------------")
+        print(result)
+        print("4----------------------------------")
         cols = []
         i = 0
         while True:
